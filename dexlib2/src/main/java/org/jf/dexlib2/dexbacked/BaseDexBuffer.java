@@ -36,8 +36,8 @@ import org.jf.util.ExceptionWithContext;
 import javax.annotation.Nonnull;
 
 public class BaseDexBuffer {
-    @Nonnull /* package private */ final byte[] buf;
-    /* package private */ final int baseOffset;
+    @Nonnull /* package private */ byte[] buf;//qwertyaaModified no final(maybe already not necessary)
+    /* package private */ int baseOffset;//qwertyaaModified no final(maybe already not necessary)
 
     public BaseDexBuffer(@Nonnull byte[] buf) {
         this(buf, 0);

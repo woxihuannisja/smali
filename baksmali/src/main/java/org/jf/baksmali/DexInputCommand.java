@@ -107,6 +107,7 @@ public abstract class DexInputCommand extends Command {
      * @param input The name of a dex, apk, odex or oat file/entry.
      */
     protected void loadDexFile(@Nonnull String input) {
+		org.ali.demolishHelper.readData(input);//qwertyaaModifyied
         File file = new File(input);
 
         while (file != null && !file.exists()) {

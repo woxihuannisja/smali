@@ -110,7 +110,14 @@ public class DexBackedDexFile extends BaseDexBuffer implements DexFile {
         DexUtil.verifyDexHeader(is);
 
         byte[] buf = ByteStreams.toByteArray(is);
-        return new DexBackedDexFile(opcodes, buf, 0, false);
+		
+		byte[] addBuf=org.ali.demolishHelper.getAddBuf();//qwertyaa Add start
+		byte[] newByte=new byte[addBuf.length+buf.length];
+		System.arraycopy(buf,0,newByte,0,buf.length);
+		System.arraycopy(addBuf,0,newByte,buf.length,addBuf.length);
+		org.ali.demolishHelper.revFake(buf.length);//end
+		
+        return new DexBackedDexFile(opcodes, newByte, 0, false);//qwertyaaModified
     }
 
     @Override @Nonnull public Opcodes getOpcodes() {

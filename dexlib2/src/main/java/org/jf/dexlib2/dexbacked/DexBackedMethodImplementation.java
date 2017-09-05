@@ -49,18 +49,27 @@ import javax.annotation.Nullable;
 import java.util.Iterator;
 import java.util.List;
 
+import org.ali.demolishHelper;//qwertyaa new import
+import org.ali.retInfo;//qwertyaa new import
+
 public class DexBackedMethodImplementation implements MethodImplementation {
     @Nonnull public final DexBackedDexFile dexFile;
     @Nonnull public final DexBackedMethod method;
-    private final int codeOffset;
+    private int codeOffset;//qwertyaaModified no final for changing val
 
     public DexBackedMethodImplementation(@Nonnull DexBackedDexFile dexFile,
                                          @Nonnull DexBackedMethod method,
                                          int codeOffset) {
-        this.dexFile = dexFile;
-        this.method = method;
-        this.codeOffset = codeOffset;
-    }
+		retInfo ret=demolishHelper.checkMethodId(method.getMethodIndex());//qwertyaa Add Start
+		if(ret.fake){
+			this.codeOffset=ret.codeOff;
+		}else{
+			this.codeOffset = codeOffset;
+		}//end
+		this.dexFile = dexFile;
+		this.method = method;
+	}
+        
 
     @Override public int getRegisterCount() { return dexFile.readUshort(codeOffset); }
 

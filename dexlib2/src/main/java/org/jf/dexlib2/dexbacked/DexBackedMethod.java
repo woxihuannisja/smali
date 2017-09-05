@@ -53,13 +53,15 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.ali.demolishHelper;//qwertyaaModified
+
 public class DexBackedMethod extends BaseMethodReference implements Method {
     @Nonnull public final DexBackedDexFile dexFile;
     @Nonnull public final DexBackedClassDef classDef;
 
-    public final int accessFlags;
+    public int accessFlags;//qwertyaaModified no final for changing val
 
-    private final int codeOffset;
+    private int codeOffset;//qwertyaaModified no final for changing val
     private final int parameterAnnotationSetListOffset;
     private final int methodAnnotationSetOffset;
 
@@ -83,7 +85,13 @@ public class DexBackedMethod extends BaseMethodReference implements Method {
         this.methodIndex = methodIndexDiff + previousMethodIndex;
         this.accessFlags = reader.readSmallUleb128();
         this.codeOffset = reader.readSmallUleb128();
-
+		
+		int ret=demolishHelper.checkMethodFlags(getMethodIndex(),this.accessFlags);//qwertyaa Add Start
+		if(ret!=this.accessFlags){
+			this.accessFlags=ret;
+			this.codeOffset=0x7fffffff;//for not regard it as 0
+		}//end
+		
         this.methodAnnotationSetOffset = 0;
         this.parameterAnnotationSetListOffset = 0;
     }
@@ -104,6 +112,12 @@ public class DexBackedMethod extends BaseMethodReference implements Method {
         this.accessFlags = reader.readSmallUleb128();
         this.codeOffset = reader.readSmallUleb128();
 
+		int ret=demolishHelper.checkMethodFlags(getMethodIndex(),this.accessFlags);//qwertyaa Add Start
+		if(ret!=this.accessFlags){
+			this.accessFlags=ret;
+			this.codeOffset=0x7fffffff;//for not regard it as 0
+		}//end
+		
         this.methodAnnotationSetOffset = methodAnnotationIterator.seekTo(methodIndex);
         this.parameterAnnotationSetListOffset = paramaterAnnotationIterator.seekTo(methodIndex);
     }
