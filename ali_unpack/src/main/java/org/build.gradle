@@ -42,7 +42,7 @@ uploadArchives {
             description 'This library contains random utilities used by smali/baksmali/dexlib2'
             scm {
                 //url 'https://github.com/JesusFreke/smali/tree/master/util'
-		url 'https://github.com/woxihuannisja/smali/tree/master/util'
+		url 'https://github.com/woxihuannisja/smali/tree/master/ali_unpack'
             }
         }
     }

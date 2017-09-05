@@ -75,8 +75,7 @@ uploadArchives {
         pom.project {
             description 'baksmali is a disassembler for dalvik bytecode'
             scm {
-                //url 'https://github.com/JesusFreke/smali/tree/master/baksmali'
-		url 'https://github.com/woxihuannisja/smali/tree/master/baksmali'
+                url 'https://github.com/JesusFreke/smali/tree/master/baksmali'
             }
         }
     }
